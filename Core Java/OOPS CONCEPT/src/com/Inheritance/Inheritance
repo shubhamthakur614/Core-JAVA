@@ -1,0 +1,111 @@
+
+ -Inheritance:It is a mechanisms of acquiring all the properties and
+    behaviour of parent class .
+    except (constructor and private method);
+    -when we use inheritance classes are tightly couple that means if i trying
+    to perform modification it will affect the original class also
+    
+    why to do inheritance
+    1)you can achieve runtime polymorphism/method overriding.
+    2)Code reusability going to achieve.
+    3)cost cutting
+    4)reduce redundancy
+    
+    How many types of relation ships in between classes
+    1)IS-A relationship(Inheritance)
+    2)Has-A relationship(association)
+    i)aggregation
+    ii)composition
+    
+    1)Is a relationship
+    
+    the main disadvantage is make the classes tightly coupled
+    
+    EX:
+    class Vehicle
+    {
+    
+    }
+    
+    class Car extends Vehicle
+    {
+    This is a is a relation ship
+    car is a vehicle
+    }
+    
+    2)Association(Has-A relationship)
+    -Association is relation between two separate classes which establishes through their 
+    Objects.Association can be one-to-one, one-to-many, many-to-one, many-to-many.
+    In Object-Oriented programming, an Object communicates to other Object to use functionality 
+    and services provided by that object.
+   - Composition and Aggregation are the two forms of association.
+    
+    -If a class have an entity reference, it is known as Aggregation.
+     Aggregation represents HAS-A relationship.
+    -It is very commonly used relationship
+    -association can achieve directly as well as through new keyword.
+    because of has a relationship you can access the method which is required for 
+    your project not all property so because of this there is no tightly coupled.
+    
+    EX:
+    
+    class student
+    {
+      String name;
+      int roll_no;
+      
+      direct has a relationship
+      student has a name
+      student has a rollNO
+    }
+    
+    Another example
+    
+    class Engine
+    {
+    
+    }
+    
+    class car
+    {
+     Engine e=new Engine();//has a relation as car has a engine
+     //if we use extend keyword then we achieve inheritance
+     but here we achieve has a relation ship so we don't get tightly coupling 
+     only few method we can access based on project not all like inheritance
+    }
+    
+    //in case of inheritance blood relation is created but in case of has a 
+    relation ship blood relation is not created
+    
+    -types of association
+    -if there is weak bonding between two classes then we called it as
+     aggregation.
+     -If there is strong bonding between two classes that we called it as a
+     composition
+     
+     EX:
+     suppose we have class car and that class we have a subclass is music
+     player and engine.
+     -music player with car has weak bonding because a car can have music player
+     but its not compulsory a car without music player also valid.and music
+     player without car is also valid.(Aggregation)
+     -engine with car has strong bonding without engine car can not drive
+     and without engine what engine can do .(COmposition)
+     
+     -If we don't have container object still we contained object it is aggregation
+     -if we don't have contained object and because of this the exsistent of
+     container object is gone that is composition.
+     
+     EX:
+     we have college class an two subclass is professor and branches.
+     if we don't have college still we can have professor.but we don't have college then we don't
+     have branches.
+     
+     when to use aggregation and inheritance
+     -when the relation is lifelong go for inheritance
+     -otherwise association is the best choice when we have to use the code
+     readability is going to achieve.
+    
+    
+    
+    

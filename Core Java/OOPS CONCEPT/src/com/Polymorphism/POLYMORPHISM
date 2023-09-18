@@ -1,0 +1,55 @@
+1)method overloading is compile time polymorphism.
+2)method overriding is run time polymorphism
+
+!!!!!!!!!!!!!OVERLOADING!!!!!!!!!!!!!!!!!!!!
+
+-If a class has multiple methods having same name but different in parameters,
+ it is known as METHOD OVERLOADING.
+
+-If we have to perform only one operation, having same name of the methods 
+increases the READABILITY of the program.
+ 
+ There are two ways to overload the method in java
+
+ 1)By changing number of arguments.
+ 2)By changing the data type.
+ 
+ -In java we can not perform method overloading just by changing the return 
+ type from 1.5v onWard.
+ 
+ -TYPEPRAMOTION
+ -if one is integer and one is double then the integer type promoted into 
+ double.
+ -but if we have two integer and two double then type promotion not happen .
+ 
+ ****VVIMP
+ -runtime polymorphism you cant achieve with the variables;
+ EX:
+  class Animal
+  {
+    String s="LION";
+  }
+  
+  class Dog extends Animal
+  { 
+  String s="Dog";
+  }
+  
+  class Test
+  { 
+  public static void main(String[]args)
+  {
+    Animal a=new DOg();upcasting
+    System.out.println(a.s);//LION not dog
+      }
+  }
+  -becz with the help of parent class object reference we can 
+  hold child object but we can not access the child methods.
+  
+  -we can not reduce the scope of the method.
+  -if we have static method in parent class and same static method in child class then we
+  can override that method but this is not method overriding its method hiding.
+  
+  -Method Hiding
+  -all rules of method hiding is same as that of the method overriding but following diff
+  -

@@ -1,0 +1,219 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!! JDBC IMP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-JDBC (IT IS A TECHNOLOGY) stands for JAVA DATABASE CONNECTIVITY. JDBC is a Java API to 
+connect and execute the query with the database. 
+-It is a part of Java SE (Java Standard Edition). JDBC API uses JDBC drivers to 
+connect with the database. 
+
+-There are four types of JDBC drivers:
+1)	JDBC - ODBC BRIDGE DRIVER
+2)	NATIVE DRIVER
+3)	NETWORK PROTOCOL DRIVER
+4)	THIN DRIVER
+
+API:
+-API (Application programming interface) is a document that contains a description of all the 
+features of a product or software. It represents classes and interfaces that software programs 
+can follow to communicate with each other. An API can be created for applications, libraries, 
+operating systems, etc. 
+OR
+-IT is A Predefined Program.
+OR
+-It is collection of classes, interfaces and specification.
+Where classes and interfaces are used for designing the application and specification is used 
+for Communication with the Database.
+
+-We can store the data in files as well as in databases but files have some limitation it store 
+the data in limit depending upon the operating system.
+-files are not secure because any one can access there is no password protection.
+-data consistency problem. files not shareable.
+-Files have dependency problem but not in db. Becz some operating system have diff type that 
+Not supported properly to another OS.
+-file have only read data and put data but no search, edit, update file is simply a notebook.
+
+-And mainly file does ot have normalization support that if some data is repeating there is no tuning operation
+
+- JDBC PROGRAM DEVELOPMENT STEPS
+1)	REGISTER THE DRIVER CLASS
+2)	CREATE CONNECTION
+3)	CREATE STATEMENT
+4)	EXECUTE QUERY
+5)	CLOSE CONNECTION.
+
+
+1)	Register the driver class
+-The forName() method of Class class is used to register the driver class. This method is used to dynamically 
+load the driver class.
+-SYNTAX
+Public static void forName(String class name)Throws CLASS NOT FOUNFD EXCEPTION
+
+EX:
+ Class.forName(“com.mysql.cj.jdbc.Driver”);
+
+
+2)	Create the connection object:
+-The getConnection() of DriverManager is responsible to establish the connection with database.
+
+SYNTAX
+Public Static Connection getConnection(String url,String name,String psw);
+
+Ex:
+Connection con=DriverManager(“jdbc:mysql://localhost:3306/Database_Name”,”root”,”password”;
+
+3)	Create Statement:
+-The createStatement() method of Connection Interface is responsible to create the statement.
+-the object of statement is responsible to execute the query with database.
+
+Syntax
+Public Statement createStatement();throws SQLException 
+
+EX:
+
+Statement stmt=con.createStatement();
+
+4)	EXECUTE QUERY
+-The executeQuery() method of Statement interface is reponsible to perform query operation on database.This 
+method return the Result set which is used to get the record of table.
+
+
+Syntax
+Public ResultSet executeQuery(“String SQL query”) throws SQLException ;
+
+EX:
+
+ResultSet rs=stmt.executeQuery(“select * from Student”);
+While(rs.next())
+{
+ System.out.println(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getFloat(4));
+}
+
+
+5)	Close the connection
+
+-By closing connection object statement and ResultSet will be closed automatically. The close() method of 
+Connection interface is used to close the connection
+ 
+Syntax
+public void close()throws SQLException 
+Ex:
+Con.close();
+
+
+#PREPARED STATEMENT(I)
+-present in java.sql.pkg it is used to submitting query to database.dynamic query we 
+can also send static query 
+but primary used for dynamic query.
+
+-to used this interface u have to create the object for PreparedStatement() method 
+which is provided by Connection 
+interface.
+SYNTAX:public PreparedStatement prrepareStatement(“QUERY AS ARGUMENT”);Throw sql
+
+EX:PreparedStatement ps=con.prepareStatement(“delete from table_name where col=?”);
+
+JDBC API provides 3 different interfaces to execute the different types of SQL queries. They are,
+1) Statement  –  Used to execute normal SQL queries.
+
+2) PreparedStatement  –  Used to execute dynamic or parameterized SQL queries.
+
+3) CallableStatement  –  Used to execute the stored procedures.
+
+
+1) Statement
+Statement interface is used to execute normal SQL queries. You can’t pass the 
+parameters to SQL query at run time using this interface. This interface is preferred
+over other two interfaces if you are executing a particular SQL query only once. 
+The performance of this interface is also very less compared to other two interfaces.
+In most of time, Statement interface is used for DDL statements like CREATE, ALTER, 
+DROP etc. For example,
+
+
+//Creating The Statement Object 
+Statement stmt = con.createStatement();
+  
+//Executing The Statement  
+stmt.executeUpdate("CREATE TABLE STUDENT(ID NUMBER NOT NULL, NAME VARCHAR)");
+
+2) PreparedStatement
+PreparedStatement is used to execute dynamic or parameterized SQL queries. 
+PreparedStatement extends Statement interface. You can pass the parameters to 
+SQL query at run time using this interface. It is recommended to use PreparedStatement
+if you are executing a particular SQL query multiple times. It gives better 
+performance than Statement interface. Because, PreparedStatement are precompiled 
+and the query plan is created only once irrespective of how many times you are 
+executing that query. This will save lots of time.
+
+//Creating PreparedStatement object   
+PreparedStatement pstmt =con.prepareStatement("update STUDENT set NAME = ?where ID =?"); 
+//Setting values to place holders using setter methods of PreparedStatement object  
+pstmt.setString(1, "MyName");   //Assigns "MyName" to first place holder          
+pstmt.setInt(2, 111);     //Assigns "111" to second place holder 
+//Executing PreparedStatement
+pstmt.executeUpdate();
+
+3) CallableStatement
+CallableStatement is used to execute the stored procedures. CallableStatement 
+extends PreparedStatement. Usng CallableStatement, you can pass 3 types of parameters 
+to stored procedures. They are : IN – used to pass the values to stored procedure, 
+OUT – used to hold the result returned by the stored procedure and IN OUT – acts as 
+both IN and OUT parameter. Before calling the stored procedure, you must register OUT
+ parameters using registerOutParameter() method of CallableStatement. The performance 
+ of this interface is higher than the other two interfaces. Because, it calls the 
+ stored procedures which are already compiled and stored in the database server.
+
+
+//Creating CallableStatement object
+ 
+CallableStatement cstmt = con.prepareCall("{call anyProcedure(?, ?, ?)}");
+ 
+//Use cstmt.setter() methods to pass IN parameters
+ 
+//Use cstmt.registerOutParameter() method to register OUT parameters
+ 
+//Executing the CallableStatement
+ 
+cstmt.execute();
+ 
+//Use cstmt.getter() methods to retrieve the result returned by the stored procedure
+
+It will provide 3 MEthods
+1)	Int executeUpdate()//ddl Query,dml,select query
+2)	ResultSet executeQuery()//only select query
+3)	 Boolean Execute();any but show true only using select Query
+
+IMP:IN CASE OF PREPARED STATEMENT  QUERY WILL BE COMPILED ONLY ONCE AT THE TIME OF 
+CREATION ONLY EVEN YOU 
+EXECUTE ONE ;ACK TIME ALSO.
+
+@BATCH PROCESSING:(another Tunning process:performance improvance)
+-IF YOU WANT TO SEND MULTIPLE QUERY AT A TIME TO IMPROVE THE PERFOMANCE
+WE CAN PLACE THAT QUERY INTO EITHER INTO STATEMENT OR PREPARED STATEMENT OBJECT AND 
+SEND TO DB SO IT WILL REDUCE 
+THE TRAVELING TIME OF INDIVIDUAL QUERY.
+-WE CAN SEND MULTIPLE QUERY WITH THE OBJECT BUT THERE MAY SOME RESTRICTION
+-EXCEPT SELECT QUERY WE CAN SEND ANY QUERY.IF YOU TRY TO SEND SELECT QUERY WITH OTHER 
+QUERY WE GET RUN TIME 
+EXCEPTION “BATCH UPDATE EXCEPTION”
+- IT IS NOT NECESSARY THAT MULTIPLE QUERY IS FROM SAME TABLE IT CAN OF ANY TABLE
+
+* SOME SPECIAL METHOD FOR ADDING QUEARY TO OBJECT
+-public void addBatch(query1);
+EX:using statement
+Statement stmt=con.createStatement();
+stmt.addBatch(q1);
+Stmt.addBatch(q2);
+And so on
+
+* method to execute this batch to db
+
+-public int[] executBatch() throws update Exception for select query if you used.
+
+EX:
+
+Int c[]=st.executeBatch();
+Where int c[] is single dimensional array.
+-The processing of query in database is based on FIFO operation.
+
+
+
+

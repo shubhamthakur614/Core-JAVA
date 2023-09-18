@@ -1,0 +1,32 @@
+@@@@@@@@@@@@@@@@@@@@@@ ABSTRACTION @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    -Abstraction:abstraction is a process of hiding the internal
+    implementation details from the user, and only show the functionality 
+     to the user. 
+     i.e user only know what object do how it is doing user dont know.
+     -we can not create the object of abstract class but in case of anonymous
+     inner class we can create class object.
+     -we can not crate object becz its partially implemented class which 
+     having the partially method which has no complete implementation like 
+     concreate method so thats why jvm dont allows us to create the object;
+     -static method is also present inside abstract method.
+     
+     Advantage:
+    - The advantage of using an abstract class is that you can group several 
+     related classes together as siblings. Grouping classes together is 
+     important in keeping a program organized and understandable.
+     -Abstract classes enable code reusability.
+     -Abstract class in Java is highly beneficial in writing shorter codes
+     -Abstraction in Java avoids code duplication.
+     -Changes to internal code implementation are done without affecting classes
+     
+     
+     Q.why abstract class have constructor as we dont create the object.
+     ANS-to initialize the the instance variable and constructor chaining is always
+     happens
+     
+     
+   
+     
+     
+     

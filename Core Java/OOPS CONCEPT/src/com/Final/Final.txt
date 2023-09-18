@@ -1,0 +1,42 @@
+FINAL
+1)By applying final keyword to a variable ,method,or class we restrict 
+the user from not perform any reassignment.
+2)if we apply final keyword to a variable we can not reassign its value
+ again
+3)if we apply final to method we can not override it in extended class
+ again.
+4)if we make a class as final we can not inherit the class.
+5)if you not initializing the instance final variable at the time of 
+declaration you can assign through instance block,through constructor also but 
+before constructor compilation.  
+6)If your variable is static final then you can assign value at the 
+time of declaration or through static block only.through 
+Constructor it is not possible for static final variable.
+7)We can not declare constructor as final{IMP}.
+
+
+IMP 
+1)Final instance variable:
+-if you declare instance variable is a final then JVM don't provide 
+the default value.
+-we have to explicitly provide the value we can provide the value before 
+the constructor compilation.
+-There are three way you can provide value to final variable
+1)AT THE TIME OF DECLARTION .
+2)AT THR INSTANCE BLOCK(INSTANCE BLOCK EXECUTE BEFORE COMPILER ).
+3)INSIDE THE CONSTRUCTOR BEFORE ITS COMPLITION.
+
+2)final static variable
+-if you are using static final variable you have to provide the value to 
+variable explicitly otherwise compile time error.
+so you have to provide the value before class loading
+1)At the time of declaration
+2)INSIDE STATIC BLOCK.
+
+3)final local variable
+-if you are not providing the implementation then jvm wont provide you 
+have to explicitly provide it
+-BUT if you are using final static variable then you don't provide 
+implementation if you are not using then you don't get any error like instance
+and static variable get.
+-the only applicable modifier to local variable is final but not as default

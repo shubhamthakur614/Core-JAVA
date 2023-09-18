@@ -1,0 +1,10 @@
+
+Questions
+1)create linklist and create own nodes;
+2)inserting node at first mid and last at the linklist.
+3)Delete the specific node based on key provided which are allready present in LL;
+4)delete the node at given position.
+5)find element present in link list if yes or no.
+6)delete the link list .
+7)Find the length of link list;
+8)

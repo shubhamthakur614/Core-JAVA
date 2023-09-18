@@ -1,0 +1,153 @@
+#VARIABLE:-
+# variable in java can not override
+-Variable is a container which is used to hold the our value.
+-It is nothing but the memory name where you are storing your data with data 
+
+ types.
+-Based on there position and behaviour there are three type of variables.
+1)Instance variable
+2)Static variable
+3)Local variable
+4)Variable shadowing
+
+# There are five type of memory area
+1)Heap
+2)Method Area
+3)Stack
+4)PC Register
+5)Native method Stack
+
+1)Instance variable- The value of variable is varring from object to object  
+then we called it as a instance variable.
+-Instance variable is created at the time of object creation so it is stored 
+in heap memory.
+-we can not call instance variable in static method direct for that we 
+have to use variable reference.
+-Instance variable can use directly inside the class but outside of 
+method,constructor or block.
+
+2)STATIC VARIABLE:-The variable which declared outside the method and 
+which 
+is used for memory saving at class loading.
+-When declaring class variables as public static final, then variable 
+names (constants) are all in upper case. 
+
+3)local variable:
+-The local variable declared inside the the method,constructor and block directly to meet the temperary 
+requirement of programmer.  
+-Local variable store in the Stack memory Area.
+-If you are  not Providing any access modifier then by Default the variable are Default but this is
+not the case with local variable.
+-Jvm is not responsible to provide the default value if you are forgot to give value at the time of Declaration.
+---LOcal variable is Thread Safe as a seperate copy is created for every thread.
+
+4)variable Shadowing-
+If the instance variable and local variable have same name whenever
+ you print (access) it in the method. The value of the local variable 
+ will be printed (shadowing the instance variable).
+
+@ Widening refers to passing a lower size data type like short to a higher
+ size data type like int.
+EX:
+  int a=10;
+  float b=a;
+  
+@Typecasting(Narrowing):
+-Passing higher data type to lower size data type but here 
+some of the data is lost.
+EX:
+float f=10.54f;
+int a=(int)f;
+
+@overflow
+-There is also a condition where overflow is going to happen.
+ 
+ int a=128;
+ byte b=(byte)a;
+ //get the value is in the form of negative becz its support value 
+    upto 127
+ 
+ @Adding lower data type lead to CE:
+ byte a=10;
+ byte b=20;
+ byte c=a+b;//CE:addition lead to error becz it is making addition to form
+  int
+ byte c=(byte)(a+b);
+ 
+ 
+  
+
+# DATA TYPES
+1)PRIMITIVE 
+The data type can not again subdivided into any another dta type that we called primitive
+i)Byte(1)2^7
+ii)Short(2 Byte)2^15
+iii)Int(4 byte)2^31
+iv)Long(8 byte)2^63
+v)Float(4 Byte)2^31
+vi)Double(8 Byte)2^63
+vii)boolean(1 bit)
+viii)Char(2 Byte)Unicode
+
+2)NON-PRIMITVE
+i)array
+ii)class object
+iii)String
+iv)Interface
+
+
+@@OPERATORS:
+i)Unary operator(++,--)
+ii)Arithmetic operator(/,*,+,-,%)
+iii)Shift Operator.(<<,>>,>>>)
+iv)Relational Operator(>,<,>=,<=,==,!=)
+v)Bitwise Operator(&,|,^)bitwise And operator always check second condition
+vi)Logical Operator(&&,||)logical and only check 2 when 1 st true
+vii)Ternary Operator(?:)
+viii)Assignment Operator(=,+=,-=,*=,/=)
+
+
+@MAIN CLASS
+public static void main(String[]args)
+-public so that it is visible outside this class and jvm can call this method 
+from anywhere.
+-static -so without crating object of class jvm can call this method becz of static
+-void -it does return anything to jvm
+-main()-this is name configure inside jvm
+-(String[] args)-command line argument
+   
+
+@System.out.println();
+
+ex:
+class System
+{
+ static printstream out="Hello";
+ 
+}
+how we can call this variable
+class name.variable name.metod();
+system.out.println();
+-system=is a class present in java.lang pkg
+-out=is a static variable present in system class of type printstream
+-println()=is method of printstream class.
+
+@control statements
+1)If
+2)Else
+3)else if ladder
+
+@Looping statements
+1)For
+2)while
+3)do while
+4)Enhanced for loop
+
+@SWITCH
+@Break Statement
+@Continue statement
+
+
+
+
+

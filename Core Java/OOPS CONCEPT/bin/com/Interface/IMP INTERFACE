@@ -1,0 +1,131 @@
+INTERFACE:
+#interface is used to achieve the full abstraction 
+#If you dont know implementation only know the service requirement 
+specification 
+then we should go for interface.
+# Interface is mediator between the subclass and user class
+-interface tell subclass what to implements and interface tell user class 
+what to call.
+#You can not not create object for interface.
+# IMP
+
+# you can not provide instance variable inside interface becz by default all
+the variable inside interface are public static final.
+@ it is used to achieve the multiple inheritance
+# it has loose coupling(if you do change in one it will not get change in 
+another).
+# Diamond problem solution is only available in the interface.
+# interface can not extends any class becz class contain concrete method.
+
+# Every method inside the interface will be have public Abstract Method();
+ TILL 1.7 VERSION
+
+# Every field( int field) is public static final by default. becz those
+ who implementing the interface not affected by any change
+ made to this variable they make it is as final.
+ -you have to declare value to variable at the declaration time only becz 
+ they are public static final .
+ 
+ Q.WHY INTERFACE CONTAIN VARIBLES AS THEY ARE FINAL WHAT IS THERE USE?
+ ANS-interface contain variable for requirement level constant.
+ suppose you have an interface which having variable pi=3.14
+ and you are implementing this interface in calculator class so when ever
+  you are doing any PI calculation interface variable 
+ provide you constant
+ 
+# advantage of java version 8 we can also create the concrete method inside 
+the interface by default keyword 
+-becz of this default method we does not require adpater class anymore
+-but we have to explicitly provide the default keyword this method is introduce to provide
+the dummy implementation so that it is not necessary for implementation class to implement it.
+- we can also use static  concrete method can also used  but must be public
+ access modifier.
+ -we can not have static method by default we have to call this method through interface 
+ name.method name.
+ -this static method is introduce to provide security as it is not override in child 
+ implemented class and it is mainly use to provide the static utility method for all class.
+ and
+
+# in java 9 version you can create the Private concrete method inside the 
+interface and private static method
+-one question arries to your mind private method you can not access outside 
+the class then how we can use then you can call this
+ private
+-method inside default method so we can call outside the class.
+-as well as inside static method also but you have to make that method static
+ 
+-These private methods will improve code re-usability inside interfaces and 
+will provide choice to expose only our intended 
+ methods implementations to users.These methods are only accessible within
+  that interface only and cannot be accessed or 
+ inherited from an interface to another interface or class.
+ 
+ -Static block inside the interface is not allowed and Instance variable is 
+ also not allowed
+ -from java 1.8 version main method can be inside the interface.
+ 
+
+
+
+@@@ MARKER INTERFACE
+-IF AN INTERFACE DOSEN'T CONTAIN ANY METHOD AND variable and  BY IMPLEMENTING THIS 
+INTERFACE OUR implemented class OBJECT GET SOME ABILITY THEN THAT INTERFACE  WE CALLED 
+IT AS A MARKER INTERFACE.
+-basically marker interface is like tag which provide the extra information to compiler so 
+to provide the required facility to implemented class.
+
+Ex.serializable ,RandomAccess,and Cloneable interface are the marker interface.
+
+1)By implementing Serializable interface our object can save into the 
+file and travel across the n/w.
+2)By implementing the Cloneable interface our object are in position 
+to produce the exactly duplicate clone object.
+
+
+ ADAPTER CLASSS: 
+-It is a normal class which provide the implements to interface but 
+provide dummy implementation or empty implementation .
+
+Q.Why to create then Adapter class it not providing implementation.
+ANS:-Becz if you want a particular method from interface you have to 
+override every method of that interface unnecessary this will reduce 
+CODE READABILITY and increases CODE COMPLEXICITY. so instead of doing 
+this if we make a Adapter class which provide the dummy implementation 
+to the interface and by implementing that interface.and by extending 
+this adapter class U can override the particular method as per
+requirement.
+EX WindowAdapter,keyAdapter IS  A abstract class which having dummy 
+implementation.
+
+
+ WHEN SHOLD WE GO FOR INTERFACS VS ABSTRACT VS CONCREATE CLASS
+-When we don't know anything about the implementation but you know service 
+requirement specification then we should go for Interface.
+
+-When we are taking about implementation  but not completely(Partially)
+ then we should go for Abstract class.
+ex- Generic servalet ,httpservelt
+
+-If you know implementation completly and ready to provide the service 
+then you should go for concrete method.
+ex our own servlet
+
+-If everything is abstract then always go by interface becz ininterface 
+we will get multiple inheritance and you can extends 
+other class also at a same time. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

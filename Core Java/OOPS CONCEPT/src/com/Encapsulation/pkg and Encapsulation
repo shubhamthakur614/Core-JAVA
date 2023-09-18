@@ -1,0 +1,41 @@
+
+
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!PACKAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  -Pkg is a container which having group of similar type of classes ,Interfaces and sub-pkg 
+  -There are two types
+   1)Built in pkg(java.sql,java.io,java.lang)
+   2)User defined pkg.(our own pkg)
+   
+   ADVANTAGES OF JAVA PKG
+   1)Java package is used to categorize the classes and interfaces so that they can be easily maintained.
+   2)Java package provides access protection.
+   3)Java package removes naming collision.
+   
+   EX                           JAVA         ---------------------------------pkg name
+   
+              java.lang         java.util        java.awt  ------------------sub pkg   
+    
+   system.class  String.Class   ArrayList          Button.Class--------------Classes
+   
+   -WHEN EVER you need to compile pkg use javac -d
+   
+   
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ENCAPSULATION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  -Encapsulation in Java is a process of wrapping code and data together into a single unit 
+  -The Java Bean class is the example of a fully encapsulated class.
+  
+  #  ADVANTAGES
+  1)It provides you the CONTROL OVER THE DATA. Suppose you want to set the value of id which should be greater than 100 only,
+   you can write the logic inside the setter method. You can write the logic not to store the negative numbers in the 
+   setter methods.
+
+  2)It is a way to achieve data hiding in Java because other class will not be able to access the data through the private 
+  data members.
+
+  3)The encapsulate class is easy to test. So, it is better for unit testing.
+  4)The standard IDE's are providing the facility to generate the getters and setters. So, it is easy and fast to 
+    create an encapsulated class in Java.
+
+  

@@ -1,0 +1,13 @@
+JAVA IO IMP
+java stream
+-it is a logical connection between java program and file.
+output stream meant for sending data from java application to file
+input stream meant for reading data from file to java application.
+-A network computer represent in java as a socket.
+There are ^ types of Classes in java
+Abstract class
+interface class
+concreate class
+final class
+Enum class
+Annotation class

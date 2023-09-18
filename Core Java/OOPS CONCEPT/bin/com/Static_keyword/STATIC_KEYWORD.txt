@@ -1,0 +1,45 @@
+Static keyword    
+
+1)we can use static Keyword with
+  static variable
+  static method
+  static block
+  static nested classes
+
+2)#static variable:
+
+1)static variable only get memory in class area during the time of class loading only.
+it will get memory only once in method area.
+#normal variable get memory in the heap
+  We can make instance variable as static but we can't make local variable as static
+  class test
+  {
+  static int a=10;
+  void show()
+  {
+  static int b=10;//compile time error inner local variable can't be static
+  
+  }
+ #static variable belong to class not object
+ if you want to call the a into main method we do not need to create object of
+ test we can call by class name only
+ s.o.p(test.a);
+ #memory management is the main use of static variable.
+ 
+ 3)#STATIC METHOD()
+ 
+ 1)static method belong to class not an object.
+ 2)static method can be called direct if only one main class 
+ have static method we can call directly without creating object.
+ 3)static method can only access static data as well as static method only .can
+  not override non static method
+  4)we can not use super or this keyword with static method
+  5) we can overload the static method by different argument in method but we can not override the static method.
+ 6)a static variable can be used is not static method but static method only access the static variable.
+  
+ 4)#STATIC BLOCK
+ 1)static block execute automatically when the calls is loaded
+ 2)static block can be execute without the main before java JDK version 1.6
+ 3)for native method loading (code which are on another language)
+ 4)if you want to declare static variable then we write in static block
+ 

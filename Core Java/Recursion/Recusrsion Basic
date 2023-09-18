@@ -1,0 +1,46 @@
+Recursion
+-we have two types of memory 
+ * 1)stack memory
+ * 2)heap memory
+ * all function call can execute in stack memory. 
+ * when ever you run a program we get allocate a stack memory and the first function 
+   run is main function.
+   -so in stack create a main function function frame
+   -so in main function we have pd(4) so this pd(4) is function call so it will create 
+   function frame where this new function frame has n=4; what code execute in this function 
+   frame.the code we right in function frame i.e
+   
+   public static void pd(int n)
+	{
+		//when you go deep call first
+		if(n==0)
+		{
+			return ;
+		}
+		System.out.println(n);
+		pd(n-1);
+		
+	}
+	
+	-so we print n=4
+	4 print on console
+		and then pd(n-1)//4-1 =3
+		pd(3) again function call again create function frame
+		
+		n=3
+		print(3)
+		pd(n-1)//2
+		pd(2) again function call again function frame
+		
+		n=2;
+		print (2)
+		pd(1)again function call
+		
+		n=1
+		print (1)
+		pd(0);again function call
+		
+		n=0 false becz n==0 return to thst function who call it so go to pd(1)
+		there is ntg after that function so it is terminated and go such way thats how we get
+		4321;
+		

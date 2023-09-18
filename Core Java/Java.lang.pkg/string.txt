@@ -1,0 +1,5 @@
+EQUALS AND HASHCODE METHODS
+
+-there are two way of comparsison shallow com. and deep comparison
+shallow means (==)-even data is a same but present inside diff memory
+where as deep is (.equals)-data in diff memory but same data
