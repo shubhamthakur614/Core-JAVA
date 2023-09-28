@@ -14,6 +14,7 @@ public class Instance_block_object_cal {
 	}
 	static
 	{
+		System.out.println("Static Block Execute first");
 		count1++;
 	}
 	

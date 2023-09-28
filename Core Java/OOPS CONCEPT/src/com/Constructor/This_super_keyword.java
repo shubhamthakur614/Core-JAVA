@@ -6,11 +6,11 @@ class demo
 
 class Program extends demo
 {
-	int a=100;
+	int x=100;
 	public void m1()
 	{
 		
-		System.out.println(this.a);
+		System.out.println(this.x);
 		System.out.println(super.x);
 	}
 	

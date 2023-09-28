@@ -19,7 +19,7 @@ class Test1 {
 
 	}
 
-	private static Test1 t = new Test1();
+	final private static Test1 t = new Test1();
 
 	public static Test1 getMethod() {
 		System.out.println("CREATE ONLY ONE OBJECT ");

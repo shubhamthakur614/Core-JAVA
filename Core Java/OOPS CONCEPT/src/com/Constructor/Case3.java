@@ -23,5 +23,7 @@ class Child2 extends exception_program
 
 public class Case3 
 {
-
+public static void main(String[] args) {
+	
+}
 }

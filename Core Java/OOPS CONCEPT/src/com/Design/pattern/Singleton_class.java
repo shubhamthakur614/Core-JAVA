@@ -2,7 +2,7 @@ package com.Design.pattern;
 
 class Test12
 {
-	private static Test12 t=new Test12();
+	final private static Test12 t=new Test12();
 	
 	public static Test12 getTest()
 	{
