@@ -25,7 +25,7 @@ AND OBJECT ARE INSERTED BASED ON SOME SORTING ALGORITHM THEN WE SHOULD GO FOR TR
 
 @ COMPARABLE(I)
 -IT IS AN INTERFACE PRESENT IN JAVA.LANG.PKG AND IT CONTAIN ONLY ONE METHOD 
-                              COMPARETO();
+              public int COMPARETO(Object obj);//it will sort based on lexographically
                               
  -OBJECT2.COMPARETO(OBJECT1)
  -IF OBJ2 COMES BEFORE OBJ1 THEN -
