@@ -10,11 +10,13 @@ import java.util.stream.Collectors;
 public class Q2 {
 	public static void main(String[] args) {
 
-		List<String> l = Arrays.asList("AA", "BA", "BC", "AA", "BA");
+		List<String> l
+		 = Arrays.asList("AA", "BA", "BC", "AA", "BA");
 
 		String name = "geeks for geeks";
 		counting(l, name);
 		Counting1(l);
+		countingWordFreq(name);
 
 	}
 
@@ -47,6 +49,28 @@ public class Q2 {
 				System.out.println(s + " : " + hm.get(s));
 				hm.put(s, 0);
 			}
+		}
+
+	}
+
+	public static void countingWordFreq(String name) {
+		Map<Character, Integer> hm = new HashMap<>();
+		for (Character c : name.toCharArray()) {
+			if (hm.get(c) != null) {
+				hm.put(c, hm.get(c) + 1);
+			} else {
+				hm.put(c, 1);
+			}
+
+		}
+		for (int i = 0; i < name.length(); i++) {
+
+			Character c = name.charAt(i);
+			if (hm.get(c) != 0 && c != ' ') {
+				System.out.println(name.charAt(i) + " : " + hm.get(c));
+				hm.put(c, 0);
+			}
+			;
 		}
 
 	}

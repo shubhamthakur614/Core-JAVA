@@ -25,6 +25,10 @@ final class Student {
 		}
 	}
 
+	public String getName() {
+		return name;
+	}
+
 }
 
 public class Immutable_class {

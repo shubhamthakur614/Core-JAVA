@@ -81,6 +81,7 @@ public class Q1 {
 		
 		//SQL QUERY as Well
 		//select * from employee e1 where 1=(select count(distinct(Salary)) from employee e2 where e2.Salary>e1.Salary);
+	
 	}
 
 	// using normal java program
