@@ -58,7 +58,7 @@ class MixCondition implements Comparator<Student1> {
 	public int compare(Student1 o1, Student1 o2) {
 
 		if (o1.getName().equals(o2.getName())) {
-			return o1.getMarks() - o2.getMarks();
+			return o2.getMarks() - o1.getMarks();
 		} else {
 			return o1.getName().compareTo(o2.getName());
 		}
