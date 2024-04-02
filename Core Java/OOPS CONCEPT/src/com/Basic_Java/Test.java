@@ -1,137 +1,346 @@
 package com.Basic_Java;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-class Employee {
-	int id;
-	String name;
-	int age;
-	int salary;
-	String Department;
-
-	public Employee() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Employee(int id, String name, int age, int salary, String department) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.age = age;
-		this.salary = salary;
-		Department = department;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public int getSalary() {
-		return salary;
-	}
-
-	public void setSalary(int salary) {
-		this.salary = salary;
-	}
-
-	public String getDepartment() {
-		return Department;
-	}
-
-	public void setDepartment(String department) {
-		Department = department;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", age=" + age + ", salary=" + salary + ", Department="
-				+ Department + "]";
-	}
-
-}
 
 public class Test {
-	static public void main(String[] args) throws FileNotFoundException {
+	static Node head;
 
-		String s = "Welcome, Java Fullstack Developer";
+	static class Node {
+		int data;
+		Node next;
 
-		List<Integer> ll = Arrays.asList(1, 2, 3, 4, 2, 5, 6, 1, 7, 8, 9, 9);
+		public Node(int data) {
+			this.data = data;
+			this.next = null;
+		}
+	}
 
-		List<Employee> list = new ArrayList<>();
-		list.add(new Employee(1, "Z", 27, 28000, "IT"));
-		list.add(new Employee(2, "A", 22, 38000, "HR"));
-		list.add(new Employee(3, "B", 23, 29000, "PHP"));
-		list.add(new Employee(5, "D", 24, 27000, "IT"));
-		list.add(new Employee(28, "DD", 47, 14100, "MNGR"));
-		list.add(new Employee(8, "E", 47, 28000, "HR"));
-		list.add(new Employee(98, "F", 37, 29100, "PHP"));
+	public static void addFirst(int data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		newNode.next = head;
+		head = newNode;
+		return;
+	}
 
-		// sec highest salary
-		Employee employee = list.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).distinct()
-				.skip(1).findFirst().get();
-		System.out.println(employee);
+	public static void addLast(int data) {
 
-		// how many employee in each department find
-		Map<String, Long> collect = list.stream()
-				.collect(Collectors.groupingBy(Employee::getDepartment, Collectors.counting()));
-		System.out.println(collect);
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		Node curr = head;
+		while (curr.next != null) {
+			curr = curr.next;
+		}
+		curr.next = newNode;
+		return;
+	}
 
-		// find the highest salary from each department
-		Map<String, Employee> collect2 = list.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors
-				.collectingAndThen(Collectors.maxBy(Comparator.comparing(Employee::getSalary)), Optional::get)));
+	public static void printLL() {
+		if (head == null) {
+			return;
+		}
+		Node curr = head;
+		while (curr != null) {
+			System.out.print(curr.data + "-> ");
+			curr = curr.next;
+		}
+		System.out.println("Null");
+	}
 
-		collect2.forEach((a, b) -> {
-			System.out.println(a + " " + b.getSalary());
-		});
+	public static void removeFirst() {
 
-		// find the duplicate from list using set or using grouping by
-		Set<Integer> set = new HashSet<>();
-		List<Integer> collect3 = ll.stream().filter(z -> !set.add(z)).collect(Collectors.toList());
-		System.out.println(collect3);
+		if (head == null || head.next == null) {
+			head = null;
+			return;
+		}
+		head = head.next;
+		return;
+	}
 
-//		OR
+	public static void removeLast() {
 
-		List<Integer> collect4 = ll.stream().collect(Collectors.groupingBy(i -> i, Collectors.counting())).entrySet()
-				.stream().filter(entry -> entry.getValue() > 1).map(entry -> entry.getKey())
-				.collect(Collectors.toList());
-		System.out.println(collect4);
+		if (head == null || head.next == null) {
+			head = null;
+			return;
+		}
+		Node prev = head;
+		Node curr = head.next;
+		while (curr.next != null) {
+			curr = curr.next;
+			prev = prev.next;
+		}
+		prev.next = null;
+		return;
+	}
 
-		// find frequency of String
-		Map<Character, Long> collect5 = s.chars().mapToObj(x -> (char) x)
-				.filter(z -> z.valueOf(z) != ' ' && z.valueOf(z) != ',')
-				.collect(Collectors.groupingBy(i -> i, Collectors.counting()));
-		System.out.println(collect5);
+	public static Node insertAtIdx(Node head, int idx, int data) {
 
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return head;
+		}
+		if (idx == 0) {
+			newNode.next = head;
+			head = newNode;
+			return head;
+		}
+		int count = 1;
+		Node temp = head;
+		while (count < idx) {
+			temp = temp.next;
+			count++;
+		}
+		newNode.next = temp.next;
+		temp.next = newNode;
+		return head;
+	}
+
+	public static Node removeAtIdx(Node head, int idx) {
+
+		if (head == null || head.next == null) {
+			head = null;
+			return head;
+		}
+		if (idx == 0) {
+			head = head.next;
+			return head;
+		}
+		int count = 1;
+		Node temp = head;
+		while (count < idx) {
+			temp = temp.next;
+			count++;
+		}
+		temp.next = temp.next.next;
+		return head;
+
+	}
+
+	public static void insert(int data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		Node curr = head;
+		while (curr.next != null) {
+			curr = curr.next;
+		}
+		curr.next = newNode;
+		return;
+	}
+
+	public static Node reverseLL(Node head) {
+
+		if (head == null) {
+			return head;
+		}
+		Node prev = null;
+		Node curr = head;
+		while (curr != null) {
+			Node last = curr.next;
+			curr.next = prev;
+
+			prev = curr;
+			curr = last;
+		}
+		head = prev;
+		return head;
+	}
+
+	public static Node recursiveLL(Node head) {
+
+		if (head == null || head.next == null) {
+			return head;
+		}
+		Node headNode = recursiveLL(head.next);
+		head.next.next = head;
+		head.next = null;
+		return headNode;
+	}
+
+	public static void PrintReverse(Node head) {
+
+		if (head == null) {
+			return;
+		}
+		PrintReverse(head.next);
+		System.out.print(head.data + "->");
+		return;
+
+	}
+
+	public static Node removeFromLast(Node head, int idx) {
+
+		if (head.next == null || head == null) {
+			head = null;
+			return head;
+		}
+		int size = length(head);
+		int findIdx = size - idx;
+		if (size == idx) {
+			head = head.next;
+			return head;
+		}
+		int cnt = 1;
+		Node temp = head;
+		while (cnt < findIdx) {
+			temp = temp.next;
+			cnt++;
+		}
+		temp.next = temp.next.next;
+		return head;
+
+	}
+
+	public static Node removeFromLast1(Node head, int idx) {
+
+		Node fast = head;
+		Node slow = head;
+		while (idx > 0) {
+			fast = fast.next;
+			idx--;
+		}
+		if (fast == null) {
+			head = head.next;
+		}
+		while (fast.next != null) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		slow.next = slow.next.next;
+		return head;
+	}
+
+	public static Node sortedduplicateRemove(Node head) {
+
+		if (head == null) {
+			return head;
+		}
+		Node curr = head;
+		while (curr.next != null) {
+			if (curr.data == curr.next.data) {
+				curr.next = curr.next.next;
+			} else {
+				curr = curr.next;
+			}
+		}
+		return head;
+
+	}
+
+	public static Node unsortedDuplicateRemove(Node head) {
+		Set<Integer> s = new HashSet<>();
+		if (head == null || head.next == null) {
+			return head;
+		}
+		Node prev = null;
+		Node curr = head;
+		while (curr != null) {
+			if (s.contains(curr.data)) {
+				prev.next = curr.next;
+			} else {
+				s.add(curr.data);
+				prev = curr;
+			}
+			curr=curr.next;
+		}
+		return head;
+
+	}
+
+	public static Node middle(Node head) {
+
+		int length = length(head);
+		int ans = length / 2;
+		Node temp = head;
+		int i = 1;
+		while (i < ans) {
+			temp = temp.next;
+			i++;
+		}
+		return temp;
+
+	}
+
+	public static int length(Node head) {
+
+		if (head == null) {
+			return 0;
+		}
+
+		Node temp = head;
+		int count = 0;
+		while (temp != null) {
+			temp = temp.next;
+			count++;
+		}
+		return count;
+	}
+
+	public static Node middleFirst(Node head) {
+		Node fast = head;
+		Node slow = head;
+		while (fast.next != null && fast.next.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		return slow;
+	}
+
+	public static Node middleSec(Node head) {
+		Node fast = head.next;
+		Node slow = head;
+		while (fast != null) {
+			fast = fast.next;
+			if (fast != null) {
+				fast = fast.next;
+			}
+			slow = slow.next;
+		}
+		return slow;
+
+	}
+
+	public static void main(String[] args) {
+
+		addFirst(1);
+		addLast(2);
+		addLast(2);
+		addLast(2);
+
+		addLast(3);
+		addLast(4);
+		addLast(4);
+		addLast(5);
+
+		addLast(6);
+		printLL();
+//		removeFirst();
+//		printLL();
+//		removeLast();
+//		printLL();
+//		head = insertAtIdx(head, 2, 7);
+//		head=removeAtIdx(head, 0);
+//		head=reverseLL(head);
+//		head = recursiveLL(head);
+//		PrintReverse(head);
+//		head = removeFromLast(head, 2);
+//		head = removeFromLast1(head, 2);
+//		head = middle(head);
+//		head = middleFirst(head);
+//		head = middleSec(head);
+//		head = sortedduplicateRemove(head);
+		head = unsortedDuplicateRemove(head);
+		printLL();
 	}
 
 }
