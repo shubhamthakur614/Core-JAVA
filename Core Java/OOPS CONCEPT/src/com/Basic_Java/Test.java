@@ -6,7 +6,7 @@ import java.util.Set;
 public class Test {
 	static Node head;
 
-	static class Node {
+	public static class Node {
 		int data;
 		Node next;
 
@@ -14,6 +14,18 @@ public class Test {
 			this.data = data;
 			this.next = null;
 		}
+	}
+
+	public static void printLL(Node head) {
+		if (head == null) {
+			return;
+		}
+		Node curr = head;
+		while (curr != null) {
+			System.out.print(curr.data + "-> ");
+			curr = curr.next;
+		}
+		System.out.println("null");
 	}
 
 	public static void addFirst(int data) {
@@ -24,11 +36,9 @@ public class Test {
 		}
 		newNode.next = head;
 		head = newNode;
-		return;
 	}
 
 	public static void addLast(int data) {
-
 		Node newNode = new Node(data);
 		if (head == null) {
 			head = newNode;
@@ -40,18 +50,6 @@ public class Test {
 		}
 		curr.next = newNode;
 		return;
-	}
-
-	public static void printLL() {
-		if (head == null) {
-			return;
-		}
-		Node curr = head;
-		while (curr != null) {
-			System.out.print(curr.data + "-> ");
-			curr = curr.next;
-		}
-		System.out.println("Null");
 	}
 
 	public static void removeFirst() {
@@ -80,267 +78,279 @@ public class Test {
 		return;
 	}
 
-	public static Node insertAtIdx(Node head, int idx, int data) {
-
+	public static Node insertAt(Node head, int data, int idx) {
 		Node newNode = new Node(data);
 		if (head == null) {
 			head = newNode;
 			return head;
 		}
-		if (idx == 0) {
+		if (idx == 1) {
 			newNode.next = head;
 			head = newNode;
 			return head;
 		}
-		int count = 1;
-		Node temp = head;
-		while (count < idx) {
-			temp = temp.next;
-			count++;
+		int cnt = 2;
+		Node curr = head;
+		while (cnt < idx) {
+			cnt++;
+			curr = curr.next;
 		}
-		newNode.next = temp.next;
-		temp.next = newNode;
+		newNode.next = curr.next;
+		curr.next = newNode;
 		return head;
+
 	}
 
-	public static Node removeAtIdx(Node head, int idx) {
-
+	public static Node removeAt(Node head, int idx) {
 		if (head == null || head.next == null) {
 			head = null;
 			return head;
 		}
-		if (idx == 0) {
+		if (idx == 1) {
 			head = head.next;
 			return head;
 		}
-		int count = 1;
-		Node temp = head;
-		while (count < idx) {
-			temp = temp.next;
-			count++;
+		int cnt = 2;
+		Node curr = head;
+		while (cnt < idx) {
+			curr = curr.next;
+			cnt++;
 		}
-		temp.next = temp.next.next;
+		curr.next = curr.next.next;
 		return head;
 
-	}
-
-	public static void insert(int data) {
-		Node newNode = new Node(data);
-		if (head == null) {
-			head = newNode;
-			return;
-		}
-		Node curr = head;
-		while (curr.next != null) {
-			curr = curr.next;
-		}
-		curr.next = newNode;
-		return;
 	}
 
 	public static Node reverseLL(Node head) {
-
-		if (head == null) {
-			return head;
-		}
-		Node prev = null;
-		Node curr = head;
-		while (curr != null) {
-			Node last = curr.next;
-			curr.next = prev;
-
-			prev = curr;
-			curr = last;
-		}
-		head = prev;
-		return head;
-	}
-
-	public static Node recursiveLL(Node head) {
-
 		if (head == null || head.next == null) {
 			return head;
 		}
-		Node headNode = recursiveLL(head.next);
+		Node curr = head;
+		Node prev = null;
+		while (curr != null) {
+			Node nextNode = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = nextNode;
+		}
+		return prev;
+	}
+
+	public static Node recursiveReverseLL(Node head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		Node newHead = recursiveReverseLL(head.next);
 		head.next.next = head;
 		head.next = null;
-		return headNode;
-	}
-
-	public static void PrintReverse(Node head) {
-
-		if (head == null) {
-			return;
-		}
-		PrintReverse(head.next);
-		System.out.print(head.data + "->");
-		return;
+		return newHead;
 
 	}
 
-	public static Node removeFromLast(Node head, int idx) {
-
-		if (head.next == null || head == null) {
-			head = null;
+	public static Node findMid(Node head) {
+		if (head == null || head.next == null) {
 			return head;
 		}
 		int size = length(head);
-		int findIdx = size - idx;
-		if (size == idx) {
-			head = head.next;
-			return head;
-		}
+		int length = size / 2;
 		int cnt = 1;
 		Node temp = head;
-		while (cnt < findIdx) {
+		while (cnt <= length) {
 			temp = temp.next;
 			cnt++;
-		}
-		temp.next = temp.next.next;
-		return head;
-
-	}
-
-	public static Node removeFromLast1(Node head, int idx) {
-
-		Node fast = head;
-		Node slow = head;
-		while (idx > 0) {
-			fast = fast.next;
-			idx--;
-		}
-		if (fast == null) {
-			head = head.next;
-		}
-		while (fast.next != null) {
-			slow = slow.next;
-			fast = fast.next;
-		}
-		slow.next = slow.next.next;
-		return head;
-	}
-
-	public static Node sortedduplicateRemove(Node head) {
-
-		if (head == null) {
-			return head;
-		}
-		Node curr = head;
-		while (curr.next != null) {
-			if (curr.data == curr.next.data) {
-				curr.next = curr.next.next;
-			} else {
-				curr = curr.next;
-			}
-		}
-		return head;
-
-	}
-
-	public static Node unsortedDuplicateRemove(Node head) {
-		Set<Integer> s = new HashSet<>();
-		if (head == null || head.next == null) {
-			return head;
-		}
-		Node prev = null;
-		Node curr = head;
-		while (curr != null) {
-			if (s.contains(curr.data)) {
-				prev.next = curr.next;
-			} else {
-				s.add(curr.data);
-				prev = curr;
-			}
-			curr=curr.next;
-		}
-		return head;
-
-	}
-
-	public static Node middle(Node head) {
-
-		int length = length(head);
-		int ans = length / 2;
-		Node temp = head;
-		int i = 1;
-		while (i < ans) {
-			temp = temp.next;
-			i++;
 		}
 		return temp;
 
 	}
 
 	public static int length(Node head) {
-
 		if (head == null) {
-			return 0;
+			return 1;
 		}
-
-		Node temp = head;
-		int count = 0;
-		while (temp != null) {
-			temp = temp.next;
-			count++;
+		Node curr = head;
+		int cnt = 0;
+		while (curr != null) {
+			curr = curr.next;
+			cnt++;
 		}
-		return count;
+		return cnt;
 	}
 
-	public static Node middleFirst(Node head) {
+	public static Node findFirstMid(Node head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		Node slow = head;
+		Node fast = head;
+		while (fast.next != null && fast.next.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow;
+	}
+
+	public static Node findSecMid(Node head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		Node slow = head;
+		Node fast = head.next;
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		return slow;
+	}
+
+	// linked list cycle 2
+	public static Node findStartignOfLoop(Node head) {
+		if (head == null || head.next == null) {
+			return null;
+		}
 		Node fast = head;
 		Node slow = head;
+		Node temp = head;
 		while (fast.next != null && fast.next.next != null) {
-			slow = slow.next;
 			fast = fast.next.next;
+			slow = slow.next;
+			if (slow == fast) {
+				while (temp != slow) {
+					temp = temp.next;
+					slow = slow.next;
+				}
+				return slow;
+			}
 		}
-		return slow;
+		return null;
 	}
 
-	public static Node middleSec(Node head) {
-		Node fast = head.next;
-		Node slow = head;
-		while (fast != null) {
-			fast = fast.next;
-			if (fast != null) {
-				fast = fast.next;
-			}
-			slow = slow.next;
+	// bruteforce using hashing
+	public static Node intersection(Node h1, Node h2) {
+
+		if (h1 == null && h2 == null) {
+			return null;
 		}
-		return slow;
+		Set<Node> s = new HashSet<>();
+		while (h1 != null) {
+			s.add(h1);
+			h1 = h1.next;
+		}
+		h1 = head;
+		while (h2 != null) {
+			if (s.contains(h2)) {
+				return h2;
+			}
+			h2 = h2.next;
+		}
+		return h1;
+
+	}
+
+	// optimal using algorithm
+	public static Node intersection2(Node h1, Node h2) {
+
+		if (h1 == null && h2 == null) {
+			return null;
+		}
+		Node t1 = h1;
+		Node t2 = h2;
+		while (t1 != t2) {
+			t1 = t1 == null ? h2 : t1.next;
+			t2 = t2 == null ? h1 : t2.next;
+		}
+		return t1;
+	}
+
+//bruteforce approach with using reverse 3 time
+	public static Node add1toLL(Node head) {
+
+		head = reverseLL(head);
+		Node temp = head;
+		int carry = 1;
+		while (temp != null) {
+			temp.data += carry;
+			if (temp.data < 10) {
+				carry = 0;
+				break;
+			} else {
+				carry = 1;
+				temp.data = 0;
+			}
+			temp = temp.next;
+		}
+		if (carry == 1) {
+			Node newNode = new Node(carry);
+			head = reverseLL(head);
+			newNode.next = head;
+			head = newNode;
+			return head;
+		}
+		head = reverseLL(head);
+		return head;
+
+	}
+
+//optimal approach wing recursive stack 
+	public static Node add1toLL2(Node head) {
+		int carry = helperMethod(head);
+		if (carry == 1) {
+			Node newNode = new Node(carry);
+			newNode.next = head;
+			head = newNode;
+			return head;
+		}
+		return head;
+
+	}
+
+	public static int helperMethod(Node head) {
+
+		if (head == null) {
+			return 1;
+		}
+		int carry = helperMethod(head.next);
+		head.data += carry;
+		if (head.data < 10) {
+			return 0;
+		}
+		head.data = 0;
+		return 1;
 
 	}
 
 	public static void main(String[] args) {
-
 		addFirst(1);
-		addLast(2);
-		addLast(2);
-		addLast(2);
-
-		addLast(3);
-		addLast(4);
-		addLast(4);
+		addFirst(2);
+		printLL(head);
 		addLast(5);
-
-		addLast(6);
-		printLL();
+		addLast(9);
+//		addLast(9);
+		printLL(head);
 //		removeFirst();
-//		printLL();
+//		printLL(head);
 //		removeLast();
-//		printLL();
-//		head = insertAtIdx(head, 2, 7);
-//		head=removeAtIdx(head, 0);
-//		head=reverseLL(head);
-//		head = recursiveLL(head);
-//		PrintReverse(head);
-//		head = removeFromLast(head, 2);
-//		head = removeFromLast1(head, 2);
-//		head = middle(head);
-//		head = middleFirst(head);
-//		head = middleSec(head);
-//		head = sortedduplicateRemove(head);
-		head = unsortedDuplicateRemove(head);
-		printLL();
+//		printLL(head);
+		head = insertAt(head, 6, 4);
+		printLL(head);
+		head = removeAt(head, 3);
+		printLL(head);
+//		head = reverseLL(head);
+//		printLL(head);
+//		head = recursiveReverseLL(head);
+//		printLL(head);
+//		head = findMid(head);
+//		printLL(head);
+//		head = findFirstMid(head);
+//		printLL(head);
+//		head = findSecMid(head);
+//		printLL(head);
+
+//		head = add1toLL(head);
+//		printLL(head);
+		head = add1toLL2(head);
+		printLL(head);
+		printLL(head);
+
 	}
 
 }

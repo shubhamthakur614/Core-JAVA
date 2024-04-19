@@ -16,6 +16,31 @@ class Students {
 		this.name = name;
 		this.age = age;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 }
 
 class ByName implements Comparator<Students> {
@@ -37,7 +62,9 @@ public class Comparator_exp {
 		l.add(new Students(4, "Sneha", 24));
 		l.add(new Students(5, "Karishma", 23));
 
-		Collections.sort(l, new ByName());
+//		Collections.sort(l, new ByName());
+		
+		Collections.sort(l,Comparator.comparing(Students::getAge));
 		l.forEach(z -> {
 			System.out.println(z.name + " " + z.age + " " + z.id);
 		});
